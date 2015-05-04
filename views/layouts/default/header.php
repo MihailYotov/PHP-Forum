@@ -6,5 +6,6 @@
     <link rel="stylesheet" href="/content/style.css"/>
 </head>
 <body>
-
-<div>Header</div>
+<header>
+    <div id="logo"><a href="/"><img src="/content/images/DForum-Logo.png" alt=""/></a></div>
+</header>
