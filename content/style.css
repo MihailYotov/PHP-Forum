@@ -33,7 +33,20 @@ header{
     height: 400px;
 }
 
+.main>form{
+    width: 200px;
+    margin: 0 auto;
+}
+
 footer{
 text-align: center;
+}
+
+.nav>ul>li, a{
+    display: inline-block;
+    font-weight: bold;
+    text-decoration: none;
+    color: #0072BC;
+
 }
 

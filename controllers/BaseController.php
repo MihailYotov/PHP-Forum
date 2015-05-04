@@ -1,8 +1,13 @@
 <?php
 
-class BaseController {
+abstract class BaseController
+{
+    protected $actionName;
+    protected $controllerName;
     protected $layoutName = DEFAULT_LAYOUT;
     protected $isViewRendered = false;
+    protected $isPost = false;
+    protected $isLoggedIn;
 
     function __construct($controllerName, $actionName)
     {
@@ -51,5 +56,25 @@ class BaseController {
             }
             $this->isViewRendered = true;
         }
+    }
+
+    public function redirectToUrl($url)
+    {
+        header("Location: " . $url);
+        die;
+    }
+
+    public function redirect(
+        $controllerName, $actionName = null, $params = null)
+    {
+        $url = '/' . urlencode($controllerName);
+        if ($actionName != null) {
+            $url .= '/' . urlencode($actionName);
+        }
+        if ($params != null) {
+            $encodedParams = array_map($params, 'urlencode');
+            $url .= implode('/', $encodedParams);
+        }
+        $this->redirectToUrl($url);
     }
 }
