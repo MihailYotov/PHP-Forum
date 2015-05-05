@@ -26,17 +26,19 @@ class QuestionsController extends BaseController
 
 
 
-//    public function create()
-//    {
-////        $this->renderView("create");
-//        if ($this->isPost) {
-//            $name = $_POST['author_name'];
-//            $this->authors = $this->db->createAuthor($name);
-//            $this->redirect('authors');
-//
-//        }
-//    }
-//
+    public function create()
+    {
+        $this->title = "Ask a question";
+        if ($this->isPost) {
+            $userId = $_SESSION['userId'];
+            $title = $_POST['questionTitle'];
+            $content = $_POST['questionContent'];
+            $this->questions = $this->db->createQuestion($userId, $title, $content);
+            $this->redirect('questions');
+
+        }
+    }
+
 //    public function delete($id)
 //    {
 ////        $this->renderView("index");

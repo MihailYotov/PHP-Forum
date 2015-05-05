@@ -29,17 +29,17 @@ class QuestionsModel extends BaseModel
 
     }
 
-//    public function createAuthor($name)
-//    {
-//        if ($name == '') {
-//            return false;
-//        }
-//        $statement = self::$db->prepare(
-//            "INSERT INTO authors VALUES(NULL, ?)");
-//        $statement->bind_param("s", $name);
-//        $statement->execute();
-//        return $statement->affected_rows > 0;
-//    }
+    public function createQuestion($userId, $title, $content)
+    {
+        if ($userId == NULL || $title == NULL || $content == NULL) {
+            return false;
+        }
+        $statement = self::$db->prepare(
+            "INSERT INTO questions VALUES(NULL, ?, ?, ?)");
+        $statement->bind_param("iss", $userId, $title, $content);
+        $statement->execute();
+        return $statement->affected_rows > 0;
+    }
 //
 //    public function deleteAuthor($id)
 //    {

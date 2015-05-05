@@ -6,15 +6,19 @@
         <div><strong><?= htmlspecialchars($question['content']) ?><strong></div>
         <?php endforeach ?>
     </div>
-    <table id="responsesTable">
-        <?php foreach ($this->answers as $answer) : ?>
-            <tr>
-                <th class="answeredUserId"><?= htmlspecialchars($answer['userId']) ?></th>
-            </tr>
-            <tr>
-                <td><?= htmlspecialchars($answer['content']) ?></td>
-            </tr>
-        <?php endforeach ?>
 
-    </table>
+    <?php if($this->answers) : ?>
+        <table id="responsesTable">
+
+            <?php foreach ($this->answers as $answer) : ?>
+                <tr>
+                    <th class="answeredUserId"><?= htmlspecialchars($answer['userId']) ?></th>
+                </tr>
+                <tr>
+                    <td><?= htmlspecialchars($answer['content']) ?></td>
+                </tr>
+            <?php endforeach ?>
+
+        </table>
+    <?php endif ?>
 </div>

@@ -12,8 +12,10 @@
     <div class="nav">
         <ul>
             <li><a href="/">Home</a></li>
+            <?php if(!$this->isLoggedIn) : ?>
             <li><a href="/account/register">Register</a></li>
             <li><a href="/account/login">Login</a></li>
+            <?php endif ?>
             <li><a href="/questions">Questions</a></li>
         </ul>
     </div>

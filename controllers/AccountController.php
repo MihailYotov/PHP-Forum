@@ -15,7 +15,8 @@ class AccountController extends BaseController
 
         if ($this->isPost) {
             $username = $_POST['username'];
-            if ($username == NULL || strlen($username) < 2) {
+            $email = $_POST['email'];
+            if ($username == NULL || strlen($username) < 2 || $email == NULL) {
                 //TODO: Error message
                 $this->redirect("account", "register");
             }
@@ -23,7 +24,6 @@ class AccountController extends BaseController
             $password = $_POST['password'];
             $fName = $_POST['fName'];
             $lName = $_POST['lName'];
-            $email = $_POST['email'];
 
             $isRegistered = $this->db->register($username, $password, $fName, $lName, $email);
 
