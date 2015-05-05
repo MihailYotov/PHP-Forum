@@ -29,7 +29,6 @@ class AccountController extends BaseController
 
             if ($isRegistered) {
                 $_SESSION['username'] = $username;
-                $_SESSION['userId'] = $username;
                 //TODO: success message
                 $this->redirect("questions", "index");
             } else {
@@ -66,6 +65,7 @@ class AccountController extends BaseController
     public function logout()
     {
         unset($_SESSION['username']);
+        unset($_SESSION['userId']);
         //$this->isLoggedIn = false;
         //TODO: Info message
         $this->redirectToUrl("/");

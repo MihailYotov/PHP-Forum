@@ -9,6 +9,26 @@ class QuestionsModel extends BaseModel
         return $statement->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function viewQuestion($id)
+    {
+        $statement = self::$db->query(
+            "SELECT * FROM questions WHERE id = $id");
+        $result = $statement->fetch_all(MYSQLI_ASSOC);
+
+        return $result;
+
+    }
+
+    public function viewQuestionAnswers($id)
+    {
+        $statement = self::$db->query(
+            "SELECT * FROM answers WHERE questionId = $id");
+        $result = $statement->fetch_all(MYSQLI_ASSOC);
+
+        return $result;
+
+    }
+
 //    public function createAuthor($name)
 //    {
 //        if ($name == '') {

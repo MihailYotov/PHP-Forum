@@ -29,6 +29,7 @@ class AccountModel extends BaseModel
         $statement->bind_param("s", $username);
         $statement->execute();
         $result = $statement->get_result()->fetch_assoc();
+        $_SESSION['userId'] = $result['id'];
 //        var_dump($result);
 
         if (password_verify($password, $result['password'])) {

@@ -18,6 +18,14 @@ class QuestionsController extends BaseController
 
     }
 
+    public function viewQuestion($id)
+    {
+        $this->questions = $this->db->viewQuestion($id);
+        $this->answers = $this->db->viewQuestionAnswers($id);
+    }
+
+
+
 //    public function create()
 //    {
 ////        $this->renderView("create");

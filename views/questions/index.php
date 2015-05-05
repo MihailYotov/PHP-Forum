@@ -4,11 +4,9 @@
     <table>
         <?php foreach ($this->questions as $question) : ?>
         <tr>
-            <th><?= htmlspecialchars($question['title']) ?></th>
+            <th><a href="questions/viewQuestion/<?= $question['id'] ?> "><?= htmlspecialchars($question['title']) ?></a></th>
         </tr>
-        <tr>
-            <td><?= htmlspecialchars($question['content']) ?></td>
-        </tr>
+
         <?php endforeach ?>
     </table>
 
