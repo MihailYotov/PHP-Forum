@@ -1,29 +1,29 @@
 <div class="main">
-    <div class="main">
 
-        <form action="/account/register" method="post">
-            <fieldset>
-                <legend>Register</legend>
+    <h1><?= htmlspecialchars($this->title); ?></h1>
 
-                <label for="username">Username: </label>
-                <input type="text" id="username" name="username"/>
+    <form action="/account/register" method="post">
+        <fieldset>
+            <legend>Register</legend>
 
-                <label for="password">Password: </label>
-                <input type="password" id="password" name="password"/>
+            <label for="username">Username: </label>
+            <input type="text" id="username" name="username"/>
 
-                <label for="fName">Name:</label>
-                <input type="text" id="fName" name="fName"/>
+            <label for="password">Password: </label>
+            <input type="password" id="password" name="password"/>
 
-                <label for="lName">Last Name:</label>
-                <input type="text" id="lName" name="lName"/>
+            <label for="fName">Name:</label>
+            <input type="text" id="fName" name="fName"/>
 
-                <label for="email">Email: </label>
-                <input type="text" id="email" name="email"/>
+            <label for="lName">Last Name:</label>
+            <input type="text" id="lName" name="lName"/>
 
-                <input type="submit" name="submit" value="Register"/>
+            <label for="email">Email: </label>
+            <input type="text" id="email" name="email"/>
 
-            </fieldset>
-        </form>
+            <input type="submit" name="submit" value="Register"/>
 
-    </div>
+        </fieldset>
+    </form>
+
 </div>

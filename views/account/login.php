@@ -1,5 +1,7 @@
 <div class="main">
 
+    <h1><?= htmlspecialchars($this->title);?></h1>
+
     <form action="/account/login" method="post">
         <fieldset>
             <legend>Login</legend>

@@ -11,6 +11,8 @@ class AccountController extends BaseController
 
     public function register()
     {
+        $this->title = "Register";
+
         if ($this->isPost) {
             $username = $_POST['username'];
             if ($username == NULL || strlen($username) < 2) {
@@ -42,6 +44,8 @@ class AccountController extends BaseController
 
     public function login()
     {
+        $this->title = "Login";
+
         if ($this->isPost) {
             $username = $_POST['username'];
             $password = $_POST['password'];
