@@ -40,6 +40,18 @@ class QuestionsModel extends BaseModel
         $statement->execute();
         return $statement->affected_rows > 0;
     }
+
+    public function createAnswer($questionId, $userId, $content)
+    {
+        if ($questionId == NULL || $content == NULL) {
+            return false;
+        }
+        $statement = self::$db->prepare(
+            "INSERT INTO answers VALUES(NULL, ?, ?, ?)");
+        $statement->bind_param("iis", $questionId, $userId, $content);
+        $statement->execute();
+        return $statement->affected_rows > 0;
+    }
 //
 //    public function deleteAuthor($id)
 //    {

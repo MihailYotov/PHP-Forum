@@ -34,15 +34,29 @@ class QuestionsController extends BaseController
             $title = $_POST['questionTitle'];
             $content = $_POST['questionContent'];
             $this->questions = $this->db->createQuestion($userId, $title, $content);
-            $this->redirect('questions');
+            $this->redirectToUrl('questions');
 
+        }
+    }
+
+    public function createAnswer($inputQuestionId)
+    {
+        $this->title = "Answer the question";
+        $this->questionId = $inputQuestionId;
+
+        if ($this->isPost) {
+            $theQuestionId = $_POST['theQuestionId'];
+            $userId = $_SESSION['userId'];
+            $content = $_POST['answerContent'];
+            $this->answers = $this->db->createAnswer($theQuestionId, $userId, $content);
+            $this->redirect('questions');
         }
     }
 
 //    public function delete($id)
 //    {
 ////        $this->renderView("index");
-//        $this->db->deleteAuthor($id);
-//        $this->redirect('authors');
+//        $this->db->deleteQuestion($id);
+//        $this->redirect('questions');
 //    }
 }
