@@ -29,14 +29,22 @@ class QuestionsModel extends BaseModel
 
     }
 
-    public function createQuestion($userId, $title, $content)
+    public function loadCategories(){
+        $statement = self::$db->query(
+            "SELECT * FROM categories ORDER BY name");
+        $result = $statement->fetch_all(MYSQLI_ASSOC);
+
+        return $result;
+    }
+
+    public function createQuestion($userId, $title, $content, $category, $tag)
     {
-        if ($userId == NULL || $title == NULL || $content == NULL) {
+        if ($userId == NULL || $title == NULL || $content == NULL || $category == NULL) {
             return false;
         }
         $statement = self::$db->prepare(
-            "INSERT INTO questions VALUES(NULL, ?, ?, ?)");
-        $statement->bind_param("iss", $userId, $title, $content);
+            "INSERT INTO questions VALUES(NULL, ?, ?, ?, ?)");
+        $statement->bind_param("issi", $userId, $title, $content, $category);
         $statement->execute();
         return $statement->affected_rows > 0;
     }

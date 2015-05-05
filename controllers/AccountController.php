@@ -30,7 +30,7 @@ class AccountController extends BaseController
             if ($isRegistered) {
                 $_SESSION['username'] = $username;
                 //TODO: success message
-                $this->redirect("questions", "index");
+                $this->redirect("questions");
             } else {
                 //TODO: Error message
                 echo("Error register");
@@ -53,7 +53,7 @@ class AccountController extends BaseController
             if ($isLogedIn) {
                 $_SESSION['username'] = $username;
                 //TODO: Success message
-                return $this->redirect("questions", "index");
+                return $this->redirect("questions");
             } else {
                 //TODO: Error message
                 $this->redirect("account", "login");
