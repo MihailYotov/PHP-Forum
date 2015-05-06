@@ -27,12 +27,12 @@ class QuestionsController extends BaseController
         $this->users = $this->db->getUsers();
     }
 
-    public function viewCategory($category){
+    public function viewCategory($category)
+    {
         $this->questions = $this->db->getQuestionsCategory($category);
         $this->categories = $this->db->loadCategories();
 //        $this->redirectToUrl('questions');
     }
-
 
 
     public function create()
@@ -68,8 +68,9 @@ class QuestionsController extends BaseController
 //            //$this->redirectToUrl('/questions');
 //        }
     }
-    
-    public function postAnswer(){
+
+    public function postAnswer()
+    {
         if ($this->isPost) {
             $theQuestionId = $_POST['theQuestionId'];
             if ($_SESSION['username']) {
@@ -80,14 +81,23 @@ class QuestionsController extends BaseController
             $userEmail = $_POST['annonimusEmail'];
             $content = $_POST['answerContent'];
             $this->answers = $this->db->postAnswer($theQuestionId, $userName, $content, $userEmail);
-            $this->redirectToUrl('/questions/viewQuestion/'.$theQuestionId);
+            $this->redirectToUrl('/questions/viewQuestion/' . $theQuestionId);
         }
     }
 
-//    public function delete($id)
-//    {
-////        $this->renderView("index");
-//        $this->db->deleteQuestion($id);
-//        $this->redirect('questions');
-//    }
+    public function deleteQuestion($id)
+    {
+        if ($_SESSION['isAdmin'] > 0) {
+            $this->db->deleteQuestion($id);
+            $this->redirect('questions');
+        }
+    }
+
+    public function addCategory(){
+        if ($this->isPost) {
+            $addCategory = $_POST['addCategory'];
+            $this->category = $this->db->addCategory($addCategory);
+            $this->redirectToUrl('/questions');
+        }
+    }
 }

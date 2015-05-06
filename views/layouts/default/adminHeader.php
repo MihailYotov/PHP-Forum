@@ -19,6 +19,7 @@
             <li><a href="/questions">Questions</a></li>
         </ul>
     </div>
+    <div id="adminTitle">You are admin!</div>
 
     <?php if($this->isLoggedIn) : ?>
         <div id="logedInBox">

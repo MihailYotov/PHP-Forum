@@ -40,12 +40,23 @@ header {
 }
 
 #admminHeader{
-    background-color: red;
+    background-color: orange;
+}
+#adminTitle{
+    display: inline-block;
+    width: 300px;
+    font-size: 30px;
 }
 
 
 h1 {
     font-size: 40px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h2 {
+    font-size: 30px;
     text-align: center;
     margin-bottom: 30px;
 }
@@ -163,10 +174,11 @@ textarea{
 .categoriesSidebar{
     display: inline-block;
     float: right;
+    list-style-type: none;
 }
 
-.categoriesSidebar{
-    list-style-type: none;
+.categoriesSidebar>li{
+    padding: 2px;
 
 }
 
@@ -179,6 +191,15 @@ textarea{
 .questionsList>li{
     padding: 10px;
 }
-table, tr, th,td{
-    border: 1px solid black;
+/*table, tr, th,td{*/
+    /*border: 1px solid black;*/
+/*}*/
+
+.deleteButton>a{
+    color: red;
+}
+
+#addCategoryForm{
+    display: inline-block;
+    float: right;
 }

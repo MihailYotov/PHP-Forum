@@ -6,7 +6,12 @@
             <h4>Asked by: <?= htmlspecialchars($question['userName']) ?> /
                 Category: <?= htmlspecialchars($question['category']) ?></h4>
             <div><strong><?= htmlspecialchars($question['content']) ?><strong></div>
-            <h3><a href="/questions/createAnswer/<?= $question['id'] ?> ">Answer the question</a></h3>
+            <h3>
+                <a href="/questions/createAnswer/<?= $question['id'] ?> ">Answer the question</a>
+                <?php if($_SESSION['isAdmin']>0) : ?>
+                    <span class="deleteButton"><a href="/questions/deleteQuestion/<?= $question['id'] ?> ">[DELETE]</a></span>
+                <?php endif ?>
+            </h3>
 
         <?php endforeach ?>
     </div>

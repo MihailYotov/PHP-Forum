@@ -28,6 +28,13 @@ class AccountController extends BaseController
             $isRegistered = $this->db->register($username, $password, $fName, $lName, $email);
 
             if ($isRegistered) {
+
+                $this->user = $this->db->getUserData($username);
+                foreach ($this->user as $userData){
+                    $_SESSION['userId'] = $userData['id'];
+                    $_SESSION['isAdmin'] = $userData['isAdmin'];
+                }
+
                 $_SESSION['username'] = $username;
                 //TODO: success message
                 $this->redirect("questions");
