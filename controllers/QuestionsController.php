@@ -40,11 +40,11 @@ class QuestionsController extends BaseController
         $this->title = "Ask a question";
         $this->categories = $this->db->loadCategories();
         if ($this->isPost) {
-            $userId = $_SESSION['userId'];
+            $userName = $_SESSION['username'];
             $title = $_POST['questionTitle'];
             $content = $_POST['questionContent'];
             $category = $_POST['category'];
-            $this->questions = $this->db->createQuestion($userId, $title, $content, $category);
+            $this->questions = $this->db->createQuestion($userName, $title, $content, $category);
             $this->redirectToUrl('/questions');
 
         }
@@ -57,13 +57,13 @@ class QuestionsController extends BaseController
 
         if ($this->isPost) {
             $theQuestionId = $_POST['theQuestionId'];
-            if ($_SESSION['userId']) {
-                $userId = $_SESSION['userId'];
+            if ($_SESSION['username']) {
+                $userName = $_SESSION['username'];
             } else {
-                $userId = NULL;
+                $userName = NULL;
             }
             $content = $_POST['answerContent'];
-            $this->answers = $this->db->createAnswer($theQuestionId, $userId, $content);
+            $this->answers = $this->db->createAnswer($theQuestionId, $userName, $content);
             $this->redirect('questions');
         }
     }

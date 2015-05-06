@@ -2,7 +2,8 @@
 
     <div id="questionBox">
         <?php foreach ($this->questions as $question) : ?>
-            <h3><?= htmlspecialchars($question['title']) ?> - [<?= htmlspecialchars($question['category']) ?>]</h3>
+            <h3><?= htmlspecialchars($question['title']) ?></h3>
+            <h4>Asked by: <?= htmlspecialchars($question['userName']) ?> / Category: <?= htmlspecialchars($question['category']) ?></h4>
             <div><strong><?= htmlspecialchars($question['content']) ?><strong></div>
             <h3><a href="/questions/createAnswer/<?= $question['id'] ?> ">Answer the question</a></h3>
 
@@ -15,8 +16,8 @@
 
             <?php foreach ($this->answers as $answer) : ?>
                 <tr>
-                    <?php if($answer['userId'] != NULL) : ?>
-                        <th class="answeredUserId"><?= htmlspecialchars($answer['userId']) ?>: </th>
+                    <?php if($answer['userName'] != NULL) : ?>
+                        <th class="answeredUserId"><?= htmlspecialchars($answer['userName']) ?>: </th>
                         <?php else : ?>
                         <th class="answeredUserId">Annonimus: </th>
                     <?php endif ?>

@@ -34,7 +34,6 @@ class QuestionsModel extends BaseModel
 
     }
 
-
     public function viewQuestionAnswers($id)
     {
         $statement = self::$db->query(
@@ -53,26 +52,26 @@ class QuestionsModel extends BaseModel
         return $result;
     }
 
-    public function createQuestion($userId, $title, $content, $category)
+    public function createQuestion($userName, $title, $content, $category)
     {
-        if ($userId == NULL || $title == NULL || $content == NULL || $category == NULL) {
+        if ($userName == NULL || $title == NULL || $content == NULL || $category == NULL) {
             return false;
         }
         $statement = self::$db->prepare(
             "INSERT INTO questions VALUES(NULL, ?, ?, ?, ?)");
-        $statement->bind_param("isss", $userId, $title, $content, $category);
+        $statement->bind_param("ssss", $userName, $title, $content, $category);
         $statement->execute();
         return $statement->affected_rows > 0;
     }
 
-    public function createAnswer($questionId, $userId, $content)
+    public function createAnswer($questionId, $userName, $content)
     {
         if ($questionId == NULL || $content == NULL) {
             return false;
         }
         $statement = self::$db->prepare(
             "INSERT INTO answers VALUES(NULL, ?, ?, ?)");
-        $statement->bind_param("iis", $questionId, $userId, $content);
+        $statement->bind_param("iss", $questionId, $userName, $content);
         $statement->execute();
         return $statement->affected_rows > 0;
     }
