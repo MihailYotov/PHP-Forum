@@ -15,6 +15,8 @@ class QuestionsController extends BaseController
     {
 
         $this->questions = $this->db->getAll();
+        $this->categories = $this->db->loadCategories();
+
 
     }
 
@@ -23,7 +25,12 @@ class QuestionsController extends BaseController
         $this->questions = $this->db->viewQuestion($id);
         $this->answers = $this->db->viewQuestionAnswers($id);
         $this->users = $this->db->getUsers();
+    }
 
+    public function viewCategory($category){
+        $this->questions = $this->db->getQuestionsCategory($category);
+        $this->categories = $this->db->loadCategories();
+//        $this->redirectToUrl('questions');
     }
 
 

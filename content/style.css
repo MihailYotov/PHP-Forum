@@ -100,6 +100,7 @@ footer {
 table {
     width: 70%;
     margin: 0 auto;
+    display: inline-block;
 }
 .answeredUserId {
     text-align: left;
@@ -142,3 +143,22 @@ textarea{
     padding-right: 20px;
 }
 
+.categoriesSidebar{
+    display: inline-block;
+    float: right;
+}
+
+.categoriesSidebar{
+    list-style-type: none;
+
+}
+
+.questionsList{
+    display: inline-block;
+    list-style-type: none;
+
+    padding-left: 45%;
+}
+.questionsList>li{
+    padding: 10px;
+}

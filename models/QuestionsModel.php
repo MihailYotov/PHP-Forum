@@ -9,6 +9,15 @@ class QuestionsModel extends BaseModel
         return $statement->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function getQuestionsCategory($category)
+    {
+        $statement = self::$db->query(
+            "SELECT * FROM questions WHERE category LIKE '$category'");
+        $result = $statement->fetch_all(MYSQLI_ASSOC);
+
+        return $result;
+    }
+
     public function getUsers(){
         $statement = self::$db->query(
         "SELECT * FROM users");
@@ -24,6 +33,7 @@ class QuestionsModel extends BaseModel
         return $result;
 
     }
+
 
     public function viewQuestionAnswers($id)
     {
