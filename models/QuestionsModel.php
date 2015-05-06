@@ -53,14 +53,14 @@ class QuestionsModel extends BaseModel
         return $result;
     }
 
-    public function createQuestion($userId, $title, $content, $category, $tag)
+    public function createQuestion($userId, $title, $content, $category)
     {
         if ($userId == NULL || $title == NULL || $content == NULL || $category == NULL) {
             return false;
         }
         $statement = self::$db->prepare(
             "INSERT INTO questions VALUES(NULL, ?, ?, ?, ?)");
-        $statement->bind_param("issi", $userId, $title, $content, $category);
+        $statement->bind_param("isss", $userId, $title, $content, $category);
         $statement->execute();
         return $statement->affected_rows > 0;
     }

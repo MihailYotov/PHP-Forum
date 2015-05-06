@@ -12,7 +12,7 @@
         <label for="category">Category: </label>
         <select name="category" id="selectCategory">
             <?php foreach ($this->categories as $categorie) : ?>
-                <option value="<?= $categorie['id'] ?>" ><?= $categorie['name'] ?></option>
+                <option value="<?= $categorie['name'] ?>" ><?= $categorie['name'] ?></option>
             <?php endforeach ?>
         </select>
 
