@@ -44,7 +44,11 @@ abstract class BaseController
             $viewFileName = 'views/' . $this->controllerName
                 . '/' . $viewName . '.php';
             if ($includeLayout) {
-                $headerFile = 'views/layouts/' . $this->layoutName . '/header.php';
+                if ($_SESSION['isAdmin'] > 0) {
+                    $headerFile = 'views/layouts/' . $this->layoutName . '/adminHeader.php';
+                } else{
+                    $headerFile = 'views/layouts/' . $this->layoutName . '/header.php';
+                }
                 include_once($headerFile);
             }
 

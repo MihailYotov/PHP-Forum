@@ -39,6 +39,11 @@ header {
     height: 10%;
 }
 
+#admminHeader{
+    background-color: red;
+}
+
+
 h1 {
     font-size: 40px;
     text-align: center;
@@ -110,10 +115,16 @@ table {
 }
 .answeredUserId {
     text-align: left;
+    padding: 10px;
 }
 
 .answeredContent{
-    padding-bottom: 30px;
+    padding: 10px;
+}
+
+.responsesTable{
+    width: 70%;
+    margin: 0 auto;
 }
 
 .responsesTable, .responsesTable>tr, .responsesTable>td{
@@ -167,4 +178,7 @@ textarea{
 }
 .questionsList>li{
     padding: 10px;
+}
+table, tr, th,td{
+    border: 1px solid black;
 }

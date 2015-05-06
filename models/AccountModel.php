@@ -29,8 +29,8 @@ class AccountModel extends BaseModel
         $statement->bind_param("s", $username);
         $statement->execute();
         $result = $statement->get_result()->fetch_assoc();
-        $_SESSION['userId'] = $result['id'];
-        $_SESSION['userEmail'] = $result['email'];
+//        $_SESSION['userId'] = $result['id'];
+//        $_SESSION['userEmail'] = $result['email'];
 //        var_dump($result);
 
         if (password_verify($password, $result['password'])) {
@@ -38,6 +38,12 @@ class AccountModel extends BaseModel
         }
 
         return false;
+    }
+
+    public function getUserData($username){
+        $statement = self::$db->query(
+            "SELECT * FROM users WHERE username LIKE '$username'");
+        return $statement->fetch_all(MYSQLI_ASSOC);
     }
 
     public function viewUser($userId){

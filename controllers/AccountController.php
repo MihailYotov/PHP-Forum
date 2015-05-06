@@ -52,6 +52,13 @@ class AccountController extends BaseController
 
             if ($isLogedIn) {
                 $_SESSION['username'] = $username;
+
+                $this->user = $this->db->getUserData($username);
+                foreach ($this->user as $userData){
+                    $_SESSION['userId'] = $userData['id'];
+                    $_SESSION['isAdmin'] = $userData['isAdmin'];
+                }
+
                 //TODO: Success message
                 return $this->redirect("questions");
             } else {
@@ -66,6 +73,7 @@ class AccountController extends BaseController
     {
         unset($_SESSION['username']);
         unset($_SESSION['userId']);
+        $_SESSION['isAdmin'] = 0;
         //$this->isLoggedIn = false;
         //TODO: Info message
         $this->redirectToUrl("/");

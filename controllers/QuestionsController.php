@@ -80,7 +80,7 @@ class QuestionsController extends BaseController
             $userEmail = $_POST['annonimusEmail'];
             $content = $_POST['answerContent'];
             $this->answers = $this->db->postAnswer($theQuestionId, $userName, $content, $userEmail);
-            $this->redirectToUrl('/questions');
+            $this->redirectToUrl('/questions/viewQuestion/'.$theQuestionId);
         }
     }
 
