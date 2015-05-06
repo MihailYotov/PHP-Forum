@@ -64,14 +64,14 @@ class QuestionsModel extends BaseModel
         return $statement->affected_rows > 0;
     }
 
-    public function createAnswer($questionId, $userName, $content)
+    public function postAnswer($questionId, $userName, $content, $userEmail)
     {
         if ($questionId == NULL || $content == NULL) {
             return false;
         }
         $statement = self::$db->prepare(
-            "INSERT INTO answers VALUES(NULL, ?, ?, ?)");
-        $statement->bind_param("iss", $questionId, $userName, $content);
+            "INSERT INTO answers VALUES(NULL, ?, ?, ?, ?)");
+        $statement->bind_param("isss", $questionId, $userName, $content, $userEmail);
         $statement->execute();
         return $statement->affected_rows > 0;
     }

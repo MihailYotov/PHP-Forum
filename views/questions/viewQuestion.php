@@ -17,7 +17,10 @@
             <?php foreach ($this->answers as $answer) : ?>
                 <tr>
                     <?php if($answer['userName'] != NULL) : ?>
-                        <th class="answeredUserId"><?= htmlspecialchars($answer['userName']) ?>: </th>
+                        <th class="answeredUserId"><?= htmlspecialchars($answer['userName']) ?>:</th>
+                        <?php if($answer['userEmail']) : ?>
+                            <td>/ With email: <?= htmlspecialchars($answer['userEmail']) ?></td>
+                        <?php endif ?>
                         <?php else : ?>
                         <th class="answeredUserId">Annonimus: </th>
                     <?php endif ?>

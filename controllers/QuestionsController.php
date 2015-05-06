@@ -55,16 +55,32 @@ class QuestionsController extends BaseController
         $this->title = "Answer the question";
         $this->questionId = $inputQuestionId;
 
+//        if ($this->isPost) {
+//            $theQuestionId = $_POST['theQuestionId'];
+//            if ($_SESSION['username']) {
+//                $userName = $_SESSION['username'];
+//            } else {
+//                $userName = $_POST['annonimusName'];
+//            }
+//                $userEmail = $_POST['annonimusEmail'];
+//            $content = $_POST['answerContent'];
+//            $this->answers = $this->db->createAnswer($theQuestionId, $userName, $content, $userEmail);
+//            //$this->redirectToUrl('/questions');
+//        }
+    }
+    
+    public function postAnswer(){
         if ($this->isPost) {
             $theQuestionId = $_POST['theQuestionId'];
             if ($_SESSION['username']) {
                 $userName = $_SESSION['username'];
             } else {
-                $userName = NULL;
+                $userName = $_POST['annonimusName'];
             }
+            $userEmail = $_POST['annonimusEmail'];
             $content = $_POST['answerContent'];
-            $this->answers = $this->db->createAnswer($theQuestionId, $userName, $content);
-            $this->redirect('questions');
+            $this->answers = $this->db->postAnswer($theQuestionId, $userName, $content, $userEmail);
+            $this->redirectToUrl('/questions');
         }
     }
 
