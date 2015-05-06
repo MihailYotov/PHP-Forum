@@ -9,6 +9,12 @@ class QuestionsModel extends BaseModel
         return $statement->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function getUsers(){
+        $statement = self::$db->query(
+        "SELECT * FROM users");
+        return $statement->fetch_all(MYSQLI_ASSOC);
+    }
+
     public function viewQuestion($id)
     {
         $statement = self::$db->query(
@@ -61,7 +67,7 @@ class QuestionsModel extends BaseModel
         return $statement->affected_rows > 0;
     }
 //
-//    public function deleteAuthor($id)
+//    public function deleteQuestion($id)
 //    {
 //        $statement = self::$db->prepare(
 //            "DELETE FROM authors WHERE id = ?");

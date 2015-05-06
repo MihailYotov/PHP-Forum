@@ -38,4 +38,20 @@ class AccountModel extends BaseModel
 
         return false;
     }
+
+    public function viewUser($userId){
+        $statement = self::$db->query(
+            "SELECT * FROM users WHERE id = $userId");
+        return $statement->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function editProfile($userId, $fName, $lName, $email){
+//        $hash_pass = password_hash($password, PASSWORD_BCRYPT);
+//
+//        $registerStatement = self::$db->prepare("INSERT INTO users (fname, lname, email) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE fname=?, lname=?, email=? WHERE id = $userId");
+//        $registerStatement->bind_param("sss", $fName, $lName, $email);
+//        $registerStatement->execute();
+//
+//        return true;
+    }
 }

@@ -28,6 +28,7 @@
             <form action="/account/logout">
                 <input type="submit" name="submit" value="Logout" />
             </form>
+            <a href="/account/profile/<?php echo($_SESSION['userId']); ?> ">Profile</a>
         </div>
     <?php endif ?>
 

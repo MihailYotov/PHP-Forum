@@ -70,4 +70,39 @@ class AccountController extends BaseController
         //TODO: Info message
         $this->redirectToUrl("/");
     }
+
+    public function profile($userId){
+        $this->title = "Profile";
+        $this->users = $this->db->viewUser($userId);
+    }
+
+    public function editProfile(){
+        $this->title = "Edit profile";
+//        $userId = $_SESSION['userId'];
+//        $this->users = $this->db->viewUser($userId);
+//
+//        if ($this->isPost) {
+//            //$username = $_POST['username'];
+//            $email = $_POST['email'];
+////            if ($username == NULL || strlen($username) < 2 || $email == NULL) {
+////                //TODO: Error message
+////                $this->redirect("account", "register");
+////            }
+//
+//            //$password = $_POST['password'];
+//            $fName = $_POST['fName'];
+//            $lName = $_POST['lName'];
+////            $username, $password,
+//            $isRegistered = $this->db->editProfile($userId, $fName, $lName, $email);
+//
+////            if ($isRegistered) {
+////                $_SESSION['username'] = $username;
+////                //TODO: success message
+////                $this->redirect("questions");
+////            } else {
+////                //TODO: Error message
+////                echo("Error register");
+////            }
+//        }
+    }
 }

@@ -109,7 +109,7 @@ table {
     padding-bottom: 30px;
 }
 
-#responsesTable, #responsesTable>tr, #responsesTable>td{
+.responsesTable, .responsesTable>tr, .responsesTable>td{
     box-shadow: 0 2px 15px #888888;
     padding: 20px;
     text-align: justify;
@@ -129,4 +129,16 @@ textarea{
     height: 250px;
 }
 
+.profileTable{
+    width: 30%;
+    margin: 0 auto;
+    box-shadow: 0 2px 15px #888888;
+    padding: 20px;
+    text-align: justify;
+}
+
+.userProfileTd{
+    padding-left: 20px;
+    padding-right: 20px;
+}
 

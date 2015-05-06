@@ -11,7 +11,7 @@
 
 
     <?php if ($this->answers) : ?>
-        <table id="responsesTable">
+        <table class="responsesTable">
 
             <?php foreach ($this->answers as $answer) : ?>
                 <tr>

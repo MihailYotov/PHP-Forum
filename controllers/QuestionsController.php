@@ -22,6 +22,7 @@ class QuestionsController extends BaseController
     {
         $this->questions = $this->db->viewQuestion($id);
         $this->answers = $this->db->viewQuestionAnswers($id);
+        $this->users = $this->db->getUsers();
 
     }
 
