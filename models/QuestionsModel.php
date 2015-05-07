@@ -52,14 +52,14 @@ class QuestionsModel extends BaseModel
         return $result;
     }
 
-    public function createQuestion($userName, $title, $content, $category)
+    public function createQuestion($userName, $title, $content, $category, $visits)
     {
         if ($userName == NULL || $title == NULL || $content == NULL || $category == NULL) {
             return false;
         }
         $statement = self::$db->prepare(
-            "INSERT INTO questions VALUES(NULL, ?, ?, ?, ?)");
-        $statement->bind_param("ssss", $userName, $title, $content, $category);
+            "INSERT INTO questions VALUES(NULL, ?, ?, ?, ?, ?)");
+        $statement->bind_param("ssssi", $userName, $title, $content, $category, $visits);
         $statement->execute();
         return $statement->affected_rows > 0;
     }

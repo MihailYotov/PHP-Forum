@@ -51,7 +51,8 @@ class QuestionsController extends BaseController
             $title = $_POST['questionTitle'];
             $content = $_POST['questionContent'];
             $category = $_POST['category'];
-            $this->questions = $this->db->createQuestion($userName, $title, $content, $category);
+            $visits = 0;
+            $this->questions = $this->db->createQuestion($userName, $title, $content, $category, $visits);
             $this->redirectToUrl('/questions');
 
         }

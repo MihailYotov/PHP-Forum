@@ -37,7 +37,8 @@ if (method_exists($controller, $action)) {
 
 $controller->renderView();
 
-function __autoload($class_name) {
+function __autoload($class_name)
+{
     if (file_exists("controllers/$class_name.php")) {
         include "controllers/$class_name.php";
     }
