@@ -23,6 +23,13 @@ class QuestionsController extends BaseController
     public function viewQuestion($id)
     {
         $this->questions = $this->db->viewQuestion($id);
+
+        foreach($this->questions as $question){
+            $visitCounter = $question['visits'];
+            $visitCounter ++;
+        }
+
+        $this->visit = $this->db->increaseVisit($id, $visitCounter);
         $this->answers = $this->db->viewQuestionAnswers($id);
         $this->users = $this->db->getUsers();
     }

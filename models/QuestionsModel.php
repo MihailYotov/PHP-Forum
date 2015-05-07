@@ -76,6 +76,12 @@ class QuestionsModel extends BaseModel
         return $statement->affected_rows > 0;
     }
 
+    public function increaseVisit($id, $visitCounter){
+        $Statement = self::$db->prepare("INSERT INTO questions (id, visits) VALUES ($id, $visitCounter) ON DUPLICATE KEY UPDATE visits = $visitCounter");
+        $Statement->execute();
+        return true;
+    }
+
     //Admin functions
 
     public function deleteQuestion($id)

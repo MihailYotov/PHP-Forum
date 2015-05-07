@@ -4,7 +4,9 @@
         <?php foreach ($this->questions as $question) : ?>
             <h3><?= htmlspecialchars($question['title']) ?></h3>
             <h4>Asked by: <?= htmlspecialchars($question['userName']) ?> /
-                Category: <?= htmlspecialchars($question['category']) ?></h4>
+                Category: <?= htmlspecialchars($question['category']) ?> /
+                Visited: <?= htmlspecialchars($question['visits']) ?>
+            </h4>
             <div><strong><?= htmlspecialchars($question['content']) ?><strong></div>
             <h3>
                 <a href="/questions/createAnswer/<?= $question['id'] ?> ">Answer the question</a>
