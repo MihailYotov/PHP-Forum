@@ -11,4 +11,5 @@
 <!--            <a href="/account/profile/--><?php //echo($_SESSION['userId']); ?><!-- ">Profile</a>-->
 <!--        </div>-->
 <!--    --><?php //endif ?>
+<!--    <script>alert("I am an alert box!");</script>-->
 </div>

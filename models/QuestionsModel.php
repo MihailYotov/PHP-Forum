@@ -76,6 +76,8 @@ class QuestionsModel extends BaseModel
         return $statement->affected_rows > 0;
     }
 
+    //Admin functions
+
     public function deleteQuestion($id)
     {
         $statement = self::$db->prepare(

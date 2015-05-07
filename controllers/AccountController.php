@@ -87,8 +87,13 @@ class AccountController extends BaseController
     }
 
     public function profile($userId){
-        $this->title = "Profile";
-        $this->users = $this->db->viewUser($userId);
+        if ($_SESSION['userId'] == $userId || $_SESSION['isAdmin'] > 0) {
+            $this->title = "Profile";
+            $this->users = $this->db->viewUser($userId);
+        }else {
+            $this->redirectToUrl('/');
+        }
+
     }
 
     public function editProfile(){
@@ -119,5 +124,42 @@ class AccountController extends BaseController
 ////                echo("Error register");
 ////            }
 //        }
+    }
+
+    //Admin functions
+
+    public function allUsers(){
+        if ($_SESSION['isAdmin'] > 0) {
+            $this->title = "All users";
+            $this->users = $this->db->getAllUsers();
+        } else{
+            $this->redirectToUrl('/');
+
+
+        }
+    }
+
+    public function deleteUser($id)
+    {
+        if ($_SESSION['isAdmin'] > 0) {
+            $this->db->deleteUser($id);
+            $this->redirectToUrl('/account/allUsers');
+        }
+    }
+
+    public function promoteAdmin($id)
+    {
+        if ($_SESSION['isAdmin'] > 0) {
+            $this->db->promoteAdmin($id);
+            $this->redirectToUrl('/account/profile/'  . $id);
+        }
+    }
+
+    public function downgradeAdmin($id)
+    {
+        if ($_SESSION['isAdmin'] > 0) {
+            $this->db->downgradeAdmin($id);
+            $this->redirectToUrl('/account/profile/' . $id);
+        }
     }
 }

@@ -85,6 +85,7 @@ class QuestionsController extends BaseController
         }
     }
 
+    //Admin functions
     public function deleteQuestion($id)
     {
         if ($_SESSION['isAdmin'] > 0) {
@@ -94,10 +95,12 @@ class QuestionsController extends BaseController
     }
 
     public function addCategory(){
-        if ($this->isPost) {
-            $addCategory = $_POST['addCategory'];
-            $this->category = $this->db->addCategory($addCategory);
-            $this->redirectToUrl('/questions');
+        if ($_SESSION['isAdmin'] > 0) {
+            if ($this->isPost) {
+                $addCategory = $_POST['addCategory'];
+                $this->category = $this->db->addCategory($addCategory);
+                $this->redirectToUrl('/questions');
+            }
         }
     }
 }

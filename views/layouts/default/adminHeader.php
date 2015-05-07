@@ -17,6 +17,7 @@
                 <li><a href="/account/login">Login</a></li>
             <?php endif ?>
             <li><a href="/questions">Questions</a></li>
+            <li><a href="/account/allUsers">Users</a></li>
         </ul>
     </div>
     <div id="adminTitle">You are admin!</div>

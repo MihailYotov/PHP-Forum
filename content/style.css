@@ -203,3 +203,11 @@ textarea{
     display: inline-block;
     float: right;
 }
+
+.greenBG {
+    background-color: green;
+}
+
+.redBG {
+    background-color: red;
+}
