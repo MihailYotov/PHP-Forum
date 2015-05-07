@@ -2,6 +2,7 @@
 
 class QuestionsModel extends BaseModel
 {
+    //QUESTIONS
     public function getAll()
     {
         $statement = self::$db->query(
@@ -9,48 +10,6 @@ class QuestionsModel extends BaseModel
         return $statement->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getQuestionsCategory($category)
-    {
-        $statement = self::$db->query(
-            "SELECT * FROM questions WHERE category LIKE '$category'");
-        $result = $statement->fetch_all(MYSQLI_ASSOC);
-
-        return $result;
-    }
-
-    public function getUsers(){
-        $statement = self::$db->query(
-        "SELECT * FROM users");
-        return $statement->fetch_all(MYSQLI_ASSOC);
-    }
-
-    public function viewQuestion($id)
-    {
-        $statement = self::$db->query(
-            "SELECT * FROM questions WHERE id = $id");
-        $result = $statement->fetch_all(MYSQLI_ASSOC);
-
-        return $result;
-
-    }
-
-    public function viewQuestionAnswers($id)
-    {
-        $statement = self::$db->query(
-            "SELECT * FROM answers WHERE questionId = $id");
-        $result = $statement->fetch_all(MYSQLI_ASSOC);
-
-        return $result;
-
-    }
-
-    public function loadCategories(){
-        $statement = self::$db->query(
-            "SELECT * FROM categories ORDER BY name");
-        $result = $statement->fetch_all(MYSQLI_ASSOC);
-
-        return $result;
-    }
 
     public function createQuestion($userName, $title, $content, $category, $visits)
     {
@@ -64,6 +23,39 @@ class QuestionsModel extends BaseModel
         return $statement->affected_rows > 0;
     }
 
+
+    public function viewQuestion($id)
+    {
+        $statement = self::$db->query(
+            "SELECT * FROM questions WHERE id = $id");
+        $result = $statement->fetch_all(MYSQLI_ASSOC);
+
+        return $result;
+    }
+
+
+    public function tempGetQuestion($content)
+    {
+        $statement = self::$db->query(
+            "SELECT * FROM questions WHERE content LIKE '$content'");
+        $result = $statement->fetch_all(MYSQLI_ASSOC);
+
+        return $result;
+    }
+
+
+    //ANSWERS
+    public function viewQuestionAnswers($id)
+    {
+        $statement = self::$db->query(
+            "SELECT * FROM answers WHERE questionId = $id");
+        $result = $statement->fetch_all(MYSQLI_ASSOC);
+
+        return $result;
+
+    }
+
+
     public function postAnswer($questionId, $userName, $content, $userEmail)
     {
         if ($questionId == NULL || $content == NULL) {
@@ -76,21 +68,44 @@ class QuestionsModel extends BaseModel
         return $statement->affected_rows > 0;
     }
 
-    public function increaseVisit($id, $visitCounter){
-        $Statement = self::$db->prepare("INSERT INTO questions (id, visits) VALUES ($id, $visitCounter) ON DUPLICATE KEY UPDATE visits = $visitCounter");
-        $Statement->execute();
-        return true;
-    }
 
-    public function tempGetQuestion($content){
+    //CATEGORIES
+    public function loadCategories()
+    {
         $statement = self::$db->query(
-            "SELECT * FROM questions WHERE content LIKE '$content'");
+            "SELECT * FROM categories ORDER BY name");
         $result = $statement->fetch_all(MYSQLI_ASSOC);
 
         return $result;
     }
 
-    public function addQuestionTags($tag, $questionId){
+    public function getQuestionsCategory($category)
+    {
+        $statement = self::$db->query(
+            "SELECT * FROM questions WHERE category LIKE '$category'");
+        $result = $statement->fetch_all(MYSQLI_ASSOC);
+
+        return $result;
+    }
+
+
+    //TAGS
+    public function loadTags()
+    {
+        $statement = self::$db->query(
+            "SELECT * FROM tags ORDER BY name");
+        $result = $statement->fetch_all(MYSQLI_ASSOC);
+
+        return $result;
+    }
+
+
+    public function addQuestionTags($tag, $questionId)
+    {
+        if ($tag == NULL) {
+            return false;
+        }
+
         $statement = self::$db->prepare("SELECT COUNT(id) FROM tags WHERE name LIKE '$tag'");
 //        $statement->bind_param("s", $tag);
         $statement->execute();
@@ -106,26 +121,35 @@ class QuestionsModel extends BaseModel
         return true;
     }
 
-    public function loadTags(){
-        $statement = self::$db->query(
-            "SELECT * FROM tags ORDER BY name");
-        $result = $statement->fetch_all(MYSQLI_ASSOC);
-
-        return $result;
-    }
 
     public function getQuestionsTag($tag)
     {
         $statement = self::$db->query(
-            //"SELECT * FROM questions WHERE id LIKE '$tag'");
+        //"SELECT * FROM questions WHERE id LIKE '$tag'");
             "SELECT * FROM questions LEFT JOIN tags ON tags.questionId = questions.id WHERE tags.name LIKE '$tag'");
         $result = $statement->fetch_all(MYSQLI_ASSOC);
 
         return $result;
     }
 
+    //USERS
+    public function getUsers()
+    {
+        $statement = self::$db->query(
+            "SELECT * FROM users");
+        return $statement->fetch_all(MYSQLI_ASSOC);
+    }
 
-    //Admin functions
+    //VISITS
+    public function increaseVisit($id, $visitCounter)
+    {
+        $Statement = self::$db->prepare("INSERT INTO questions (id, visits) VALUES ($id, $visitCounter) ON DUPLICATE KEY UPDATE visits = $visitCounter");
+        $Statement->execute();
+        return true;
+    }
+
+
+    //ADMIN FUNCTIONS
 
     public function deleteQuestion($id)
     {
@@ -141,7 +165,8 @@ class QuestionsModel extends BaseModel
         return $statement->affected_rows > 0;
     }
 
-    public function addCategory($category){
+    public function addCategory($category)
+    {
         if ($category == NULL) {
             return false;
         }

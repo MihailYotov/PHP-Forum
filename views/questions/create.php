@@ -4,15 +4,15 @@
     <form action="/questions/create" method="post">
 
         <label for="questionTitle">Title: </label>
-        <input type="text" id="questionTitle" name="questionTitle"/>
+        <input type="text" id="questionTitle" name="questionTitle" required="required"/>
 
         <label for="questionContent">Content: </label>
-        <textarea id="questionContent" name="questionContent"> </textarea>
+        <textarea id="questionContent" name="questionContent" required="required"> </textarea>
 
         <label for="category">Category: </label>
         <select name="category" id="selectCategory">
             <?php foreach ($this->categories as $categorie) : ?>
-                <option value="<?= $categorie['name'] ?>" ><?= $categorie['name'] ?></option>
+                <option value="<?= htmlspecialchars($categorie['name']) ?>" ><?= htmlspecialchars($categorie['name']) ?></option>
             <?php endforeach ?>
         </select>
 

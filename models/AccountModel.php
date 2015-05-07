@@ -2,6 +2,7 @@
 
 class AccountModel extends BaseModel
 {
+    //REGISTRATION
     public function register($username, $password, $fName, $lName, $email)
     {
         $statement = self::$db->prepare("SELECT COUNT(id) FROM users WHERE username = ?");
@@ -20,18 +21,16 @@ class AccountModel extends BaseModel
         $registerStatement->execute();
 
         return true;
-
     }
 
+
+    //LOGIN
     public function login($username, $password)
     {
         $statement = self::$db->prepare("SELECT id, username, password FROM users WHERE username = ?");
         $statement->bind_param("s", $username);
         $statement->execute();
         $result = $statement->get_result()->fetch_assoc();
-//        $_SESSION['userId'] = $result['id'];
-//        $_SESSION['userEmail'] = $result['email'];
-//        var_dump($result);
 
         if (password_verify($password, $result['password'])) {
             return true;
@@ -40,6 +39,8 @@ class AccountModel extends BaseModel
         return false;
     }
 
+
+    //PROFILE INFO
     public function getUserData($username)
     {
         $statement = self::$db->query(
@@ -54,6 +55,7 @@ class AccountModel extends BaseModel
         return $statement->fetch_all(MYSQLI_ASSOC);
     }
 
+
     public function editProfile($userId, $fName, $lName, $email)
     {
 //        $hash_pass = password_hash($password, PASSWORD_BCRYPT);
@@ -65,7 +67,8 @@ class AccountModel extends BaseModel
 //        return true;
     }
 
-    //Admin Functions
+
+    //ADMIN FUNCTIONS
     public function getAllUsers()
     {
         $statement = self::$db->query(

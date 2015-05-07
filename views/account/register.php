@@ -7,10 +7,10 @@
             <legend>Register</legend>
 
             <label for="username">Username: </label>
-            <input type="text" id="username" name="username"/>
+            <input type="text" id="username" name="username" required="required"/>
 
             <label for="password">Password: </label>
-            <input type="password" id="password" name="password"/>
+            <input type="password" id="password" name="password" required="required"/>
 
             <label for="fName">Name:</label>
             <input type="text" id="fName" name="fName"/>
@@ -19,7 +19,7 @@
             <input type="text" id="lName" name="lName"/>
 
             <label for="email">Email: </label>
-            <input type="text" id="email" name="email"/>
+            <input type="text" id="email" name="email" required="required"/>
 
             <input type="submit" name="submit" value="Register"/>
 
