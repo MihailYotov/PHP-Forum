@@ -24,15 +24,27 @@
             </li>
         <?php endforeach ?>
         <li>
-            <?php if ($_SESSION['isAdmin'] > 0) : ?>
-                <form action="/questions/addCategory" method="post" id="addCategoryForm">
-                    <label for="addCategory"></label>
-                    <input type="text" id="addCategory" name="addCategory"/>
-                    <br/>
-                   <input type="submit" name="submit" value="Add Category"/>
-                </form>
+            <?php if(isset($_SESSION['isAdmin'])) : ?>
+                <?php if ($_SESSION['isAdmin'] > 0) : ?>
+                    <form action="/questions/addCategory" method="post" id="addCategoryForm">
+                        <label for="addCategory"></label>
+                        <input type="text" id="addCategory" name="addCategory"/>
+                        <br/>
+                        <input type="submit" name="submit" value="Add Category"/>
+                    </form>
+                <?php endif ?>
             <?php endif ?>
         </li>
+    </ul>
+
+    <ul class="tagsSidebar">
+        <li><strong>Tags: </strong></li>
+        <li><a href="/questions">All</a></li>
+        <?php foreach ($this->tags as $tag) : ?>
+            <li>
+                <a href="questions/viewTag/<?= htmlspecialchars($tag['name']) ?> "><?= htmlspecialchars($tag['name']) ?></a>
+            </li>
+        <?php endforeach ?>
     </ul>
 
 

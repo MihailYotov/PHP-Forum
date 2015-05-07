@@ -16,6 +16,9 @@
             <?php endforeach ?>
         </select>
 
+        <label for="tags">Tags:</label>
+        <input type="text" id="tags" name="tags"/>
+
         <input type="submit" name="submit" value="Ask" />
     </form>
 </div>

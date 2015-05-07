@@ -175,9 +175,22 @@ textarea{
     display: inline-block;
     float: right;
     list-style-type: none;
+    margin: 10px;
 }
 
 .categoriesSidebar>li{
+    padding: 2px;
+
+}
+
+.tagsSidebar{
+    display: inline-block;
+    float: right;
+    list-style-type: none;
+    margin: 10px;
+}
+
+.tagsSidebar>li{
     padding: 2px;
 
 }

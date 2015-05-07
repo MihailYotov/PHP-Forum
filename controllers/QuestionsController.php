@@ -16,6 +16,7 @@ class QuestionsController extends BaseController
 
         $this->questions = $this->db->getAll();
         $this->categories = $this->db->loadCategories();
+        $this->tags = $this->db->loadTags();
 
 
     }
@@ -38,9 +39,15 @@ class QuestionsController extends BaseController
     {
         $this->questions = $this->db->getQuestionsCategory($category);
         $this->categories = $this->db->loadCategories();
-//        $this->redirectToUrl('questions');
+        $this->tags = $this->db->loadTags();
     }
 
+    public function viewTag($tag)
+    {
+        $this->questions = $this->db->getQuestionsTag($tag);
+        $this->tags = $this->db->loadTags();
+        $this->categories = $this->db->loadCategories();
+    }
 
     public function create()
     {
@@ -53,6 +60,21 @@ class QuestionsController extends BaseController
             $category = $_POST['category'];
             $visits = 0;
             $this->questions = $this->db->createQuestion($userName, $title, $content, $category, $visits);
+
+            $this->tempGetQuestion = $this->db->tempGetQuestion($content);
+
+             foreach($this->tempGetQuestion as $question) {
+
+                 $questionId = $question['id'];
+                 $tags = $_POST['tags'];
+                 $tagsArr = explode(', ', $tags);
+
+                 foreach ($tagsArr as $tag) {
+                     $this->addedTags = $this->db->addQuestionTags($tag, $questionId);
+                     //$this->Addedtags = $this->db>addQuestionTags($tag, $questionId);
+                 }
+             }
+
             $this->redirectToUrl('/questions');
 
         }

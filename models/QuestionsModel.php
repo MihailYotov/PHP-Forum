@@ -82,6 +82,49 @@ class QuestionsModel extends BaseModel
         return true;
     }
 
+    public function tempGetQuestion($content){
+        $statement = self::$db->query(
+            "SELECT * FROM questions WHERE content LIKE '$content'");
+        $result = $statement->fetch_all(MYSQLI_ASSOC);
+
+        return $result;
+    }
+
+    public function addQuestionTags($tag, $questionId){
+        $statement = self::$db->prepare("SELECT COUNT(id) FROM tags WHERE name LIKE '$tag'");
+//        $statement->bind_param("s", $tag);
+        $statement->execute();
+        $result = $statement->get_result()->fetch_assoc();
+        if ($result['COUNT(id)'] > 0) {
+            return false;
+        }
+
+        $registerStatement = self::$db->prepare("INSERT INTO tags (name, questionId) VALUES (?, ?)");
+        $registerStatement->bind_param("si", $tag, $questionId);
+        $registerStatement->execute();
+
+        return true;
+    }
+
+    public function loadTags(){
+        $statement = self::$db->query(
+            "SELECT * FROM tags ORDER BY name");
+        $result = $statement->fetch_all(MYSQLI_ASSOC);
+
+        return $result;
+    }
+
+    public function getQuestionsTag($tag)
+    {
+        $statement = self::$db->query(
+            //"SELECT * FROM questions WHERE id LIKE '$tag'");
+            "SELECT * FROM questions LEFT JOIN tags ON tags.questionId = questions.id WHERE tags.name LIKE '$tag'");
+        $result = $statement->fetch_all(MYSQLI_ASSOC);
+
+        return $result;
+    }
+
+
     //Admin functions
 
     public function deleteQuestion($id)
