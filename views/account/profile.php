@@ -26,20 +26,20 @@
             <tr>
                 <td class="userProfileTd"><strong>Your user status is: </strong></td>
                 <?php if ($user['isAdmin'] < 1) : ?>
-                    <td class="userProfileTd greenBG">Normal user</td>
+                    <td class="userProfileTd okBox">Normal user</td>
                 <?php else : ?>
-                    <td class="userProfileTd redBG">Administrator</td>
+                    <td class="userProfileTd infobox">Administrator</td>
                 <?php endif ?>
             </tr>
             <?php if ($_SESSION['isAdmin'] > 0) : ?>
                 <tr>
-                    <td class="redBG"><a href="/account/deleteUser/<?= $user['id'] ?> ">[DELETE]</a></td>
+                    <td class="warningBox"><a href="/account/deleteUser/<?= $user['id'] ?> ">[DELETE]</a></td>
                     <?php if ($user['isAdmin'] == 0) : ?>
-                        <td class="greenBG"><a href="/account/promoteAdmin/<?= $user['id'] ?> ">[Promote to Admin]</a>
+                        <td class="infobox"><a href="/account/promoteAdmin/<?= $user['id'] ?> ">[Promote to Admin]</a>
                         </td>
                     <?php endif ?>
                     <?php if ($user['isAdmin'] == 1) : ?>
-                        <td class="redBG"><a href="/account/downgradeAdmin/<?= $user['id'] ?> ">[Downgrade to Normal]</a></td>
+                        <td class="warningBox"><a href="/account/downgradeAdmin/<?= $user['id'] ?> ">[Downgrade to Normal]</a></td>
                     <?php endif ?>
                 </tr>
             <?php endif ?>

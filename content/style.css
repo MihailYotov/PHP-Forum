@@ -204,10 +204,14 @@ textarea{
     float: right;
 }
 
-.greenBG {
+.okBox {
     background-color: green;
 }
 
-.redBG {
+.infobox {
+    background-color: orange;
+}
+
+.warningBox {
     background-color: red;
 }
