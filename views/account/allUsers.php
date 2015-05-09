@@ -4,7 +4,9 @@
     <ul class="questionsList">
         <?php foreach ($this->users as $user) : ?>
             <li>
-                <a href="/account/profile/<?= $user['id'] ?> "><?= htmlspecialchars($user['username']) ?></a>
+                <?php if($user['id'] != $_SESSION['userId']) : ?>
+                    <a href="/account/profile/<?= $user['id'] ?> "><?= htmlspecialchars($user['username']) ?></a>
+                <?php endif ?>
             </li>
         <?php endforeach ?>
     </ul>

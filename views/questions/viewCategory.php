@@ -31,7 +31,7 @@
         <li><a href="/questions">All</a></li>
         <?php foreach ($this->tags as $tag) : ?>
             <li>
-                <a href="<?= htmlspecialchars($tag['name']) ?> "><?= htmlspecialchars($tag['name']) ?></a>
+                <a href="/questions/viewTag/<?= htmlspecialchars($tag['name']) ?> "><?= htmlspecialchars($tag['name']) ?></a>
                 <?php if ($_SESSION['isAdmin'] > 0) : ?>
                     <a href="/questions/deleteTag/<?= htmlspecialchars($tag['id']) ?> " class="warningText">[X]</a>
                 <?php endif ?>

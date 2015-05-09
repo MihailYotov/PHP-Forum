@@ -218,19 +218,27 @@ textarea{
 }
 
 .okBox {
-    background-color: green;
+    background-color: #008000;
 }
 
 .infobox {
-    background-color: orange;
+    background-color: #FFA500;
 }
 
 .warningBox {
-    background-color: #FF0000;
+     background-color: #FF0000;
+ }
+
+.warningText, .warningText>a{
+    color: #FF0000;
 }
 
-.warningText{
-    color: #FF0000;
+.infoText, .infoText>a{
+    color: #FFA500;
+}
+
+.successText, .successText>a{
+    color: #008000;
 }
 
 .infoMessages{

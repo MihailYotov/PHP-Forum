@@ -31,7 +31,7 @@
                 <?php if ($_SESSION['isAdmin'] > 0) : ?>
                     <form action="/questions/addCategory" method="post" id="addCategoryForm">
                         <label for="addCategory"></label>
-                        <input type="text" id="addCategory" name="addCategory"/>
+                        <input type="text" id="addCategory" name="addCategory" required="required"/>
                         <br/>
                         <input type="submit" name="submit" value="Add Category"/>
                     </form>

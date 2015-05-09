@@ -18,7 +18,7 @@
         <li><a href="/questions">All</a></li>
         <?php foreach ($this->categories as $category) : ?>
             <li>
-                <a href="<?= htmlspecialchars($category['name']) ?> "><?= htmlspecialchars($category['name']) ?></a>
+                <a href="/questions/viewCategory/<?= htmlspecialchars($category['name']) ?> "><?= htmlspecialchars($category['name']) ?></a>
                 <?php if ($_SESSION['isAdmin'] > 0) : ?>
                     <a href="/questions/deleteCategory/<?= htmlspecialchars($category['id']) ?> " class="warningText">[X]</a>
                 <?php endif ?>

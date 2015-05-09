@@ -36,7 +36,7 @@ class QuestionsController extends BaseController
             foreach ($this->tempGetQuestion as $question) {
 
                 $questionId = $question['id'];
-                $tags = $_POST['tags'];
+                $tags = ucfirst(strtolower($_POST['tags']));
                 $tagsArr = explode(', ', $tags);
 
                 foreach ($tagsArr as $tag) {
@@ -56,7 +56,6 @@ class QuestionsController extends BaseController
             }
 
             $this->redirectToUrl('/questions');
-
         }
     }
 
@@ -131,6 +130,8 @@ class QuestionsController extends BaseController
     public function deleteQuestion($id)
     {
         if ($_SESSION['isAdmin'] > 0) {
+            $type = 'questionId';
+            $this->deleteQuestionTags = $this->db->deleteQuestionTags($type, $id);
             $this->db->deleteQuestion($id);
             $this->addSuccessMessage('Question deleted!');
             $this->redirect('questions');
@@ -155,7 +156,7 @@ class QuestionsController extends BaseController
     {
         if ($_SESSION['isAdmin'] > 0) {
             if ($this->isPost) {
-                $addCategory = $_POST['addCategory'];
+                $addCategory = ucfirst(strtolower($_POST['addCategory']));
                 $category = $this->category = $this->db->addCategory($addCategory);
 
                 if ($category) {
@@ -185,6 +186,8 @@ class QuestionsController extends BaseController
 
     public function deleteTag($id){
         if ($_SESSION['isAdmin'] > 0) {
+            $type = 'tagId';
+            $this->deleteQuestionTags = $this->db->deleteQuestionTags($type, $id);
             $this->db->deleteTag($id);
             $this->addSuccessMessage('Tag deleted!');
             $this->redirect('questions');

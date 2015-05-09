@@ -5,11 +5,11 @@
         <input type="hidden" value="<?= $this->questionId ?> " name="theQuestionId"/>
 
         <label for="answerContent">Content:</label>
-        <textarea id="answerContent" name="answerContent"></textarea>
+        <textarea id="answerContent" name="answerContent" required="required"></textarea>
 
         <?php if(!$this->isLoggedIn) : ?>
             <label for="annonimusName">Your name: </label>
-            <input type="text" id="annonimusName" name="annonimusName"/>
+            <input type="text" id="annonimusName" name="annonimusName" required="required"/>
 
             <label for="annonimusEmail">Your email</label>
             <input type="text" id="annonimusEmail" name="annonimusEmail"/>

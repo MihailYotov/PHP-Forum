@@ -82,7 +82,7 @@ class QuestionsModel extends BaseModel
     public function getQuestionsCategory($category)
     {
         $statement = self::$db->query(
-            "SELECT * FROM questions WHERE category LIKE '$category'");
+            "SELECT * FROM questions WHERE category LIKE '$category' ORDER BY id DESC");
         $result = $statement->fetch_all(MYSQLI_ASSOC);
 
         return $result;
@@ -145,7 +145,7 @@ class QuestionsModel extends BaseModel
         $statement = self::$db->query(
         //"SELECT * FROM questions WHERE id LIKE '$tag'");
             //"SELECT * FROM questions LEFT JOIN tags ON tags.questionId = questions.id WHERE tags.name LIKE '$tag'");
-            "SELECT * FROM questions q INNER JOIN question_tags qt ON  q.id = qt.questionId INNER JOIN tags t on qt.tagId = t.id WHERE t.name = '$tag'");
+            "SELECT * FROM questions q INNER JOIN question_tags qt ON  q.id = qt.questionId INNER JOIN tags t on qt.tagId = t.id WHERE t.name = '$tag' ORDER BY qt.questionId DESC");
         $result = $statement->fetch_all(MYSQLI_ASSOC);
 
         return $result;
@@ -232,6 +232,16 @@ class QuestionsModel extends BaseModel
     {
         $statement = self::$db->prepare(
             "DELETE FROM tags WHERE id = ?");
+        $statement->bind_param("i", $id);
+        $statement->execute();
+        return $statement->affected_rows > 0;
+    }
+
+
+    public function deleteQuestionTags($type, $id)
+    {
+        $statement = self::$db->prepare(
+            "DELETE FROM question_tags WHERE ".$type." = ?");
         $statement->bind_param("i", $id);
         $statement->execute();
         return $statement->affected_rows > 0;
