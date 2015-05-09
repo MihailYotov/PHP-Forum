@@ -6,7 +6,7 @@ class QuestionsModel extends BaseModel
     public function getAll()
     {
         $statement = self::$db->query(
-            "SELECT * FROM questions ORDER BY id");
+            "SELECT * FROM questions ORDER BY id DESC");
         return $statement->fetch_all(MYSQLI_ASSOC);
     }
 
@@ -100,7 +100,7 @@ class QuestionsModel extends BaseModel
     }
 
 
-    public function addQuestionTags($tag, $questionId)
+    public function addTags($tag)
     {
         if ($tag == NULL) {
             return false;
@@ -114,11 +114,29 @@ class QuestionsModel extends BaseModel
             return false;
         }
 
-        $registerStatement = self::$db->prepare("INSERT INTO tags (name, questionId) VALUES (?, ?)");
-        $registerStatement->bind_param("si", $tag, $questionId);
+        $registerStatement = self::$db->prepare("INSERT INTO tags (name) VALUES (?)");
+        $registerStatement->bind_param("s", $tag);
         $registerStatement->execute();
 
         return true;
+    }
+
+
+    public function addQuestionTags($questionId, $tagId){
+        $registerStatement = self::$db->prepare("INSERT INTO question_tags (questionId, tagId) VALUES (?, ?)");
+        $registerStatement->bind_param("ii", $questionId, $tagId);
+        $registerStatement->execute();
+
+        return true;
+    }
+
+
+    public function getTagId($name){
+        $statement = self::$db->query(
+            "SELECT * FROM tags WHERE name LIKE '$name'");
+        $result = $statement->fetch_all(MYSQLI_ASSOC);
+
+        return $result;
     }
 
 
@@ -126,11 +144,22 @@ class QuestionsModel extends BaseModel
     {
         $statement = self::$db->query(
         //"SELECT * FROM questions WHERE id LIKE '$tag'");
-            "SELECT * FROM questions LEFT JOIN tags ON tags.questionId = questions.id WHERE tags.name LIKE '$tag'");
+            //"SELECT * FROM questions LEFT JOIN tags ON tags.questionId = questions.id WHERE tags.name LIKE '$tag'");
+            "SELECT * FROM questions q INNER JOIN question_tags qt ON  q.id = qt.questionId INNER JOIN tags t on qt.tagId = t.id WHERE t.name = '$tag'");
         $result = $statement->fetch_all(MYSQLI_ASSOC);
 
         return $result;
     }
+
+
+    public function loadTagsInQuestion($questionId){
+        $statement = self::$db->query(
+            "SELECT * FROM tags t INNER JOIN question_tags qt ON t.id = qt.tagId INNER JOIN questions q on qt.questionId = q.id WHERE q.id = '$questionId'");
+        $result = $statement->fetch_all(MYSQLI_ASSOC);
+
+        return $result;
+    }
+
 
     //USERS
     public function getUsers()

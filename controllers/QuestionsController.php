@@ -40,7 +40,11 @@ class QuestionsController extends BaseController
                 $tagsArr = explode(', ', $tags);
 
                 foreach ($tagsArr as $tag) {
-                    $this->addedTags = $this->db->addQuestionTags($tag, $questionId);
+                    $this->addedTags = $this->db->addTags($tag);
+                    $getTagId = $this->getTagId = $this->db->getTagId($tag);
+                     foreach($getTagId as $tagId){
+                        $this->questionTags = $this->db->addQuestionTags($questionId, $tagId['id']);
+                     }
                 }
             }
 
@@ -60,6 +64,8 @@ class QuestionsController extends BaseController
     public function viewQuestion($id)
     {
         $this->questions = $this->db->viewQuestion($id);
+        //$this->tags = $this->db->loadTags();
+        $this->tags = $this->db->loadTagsInQuestion($id);
 
         foreach ($this->questions as $question) {
             $visitCounter = $question['visits'];
