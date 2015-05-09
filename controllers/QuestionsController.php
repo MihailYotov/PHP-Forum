@@ -29,7 +29,7 @@ class QuestionsController extends BaseController
             $content = $_POST['questionContent'];
             $category = $_POST['category'];
             $visits = 0;
-            $this->questions = $this->db->createQuestion($userName, $title, $content, $category, $visits);
+            $question = $this->questions = $this->db->createQuestion($userName, $title, $content, $category, $visits);
 
             $this->tempGetQuestion = $this->db->tempGetQuestion($content);
 
@@ -41,8 +41,14 @@ class QuestionsController extends BaseController
 
                 foreach ($tagsArr as $tag) {
                     $this->addedTags = $this->db->addQuestionTags($tag, $questionId);
-                    //$this->Addedtags = $this->db>addQuestionTags($tag, $questionId);
                 }
+            }
+
+            if ($question) {
+                $this->addSuccessMessage('Question created.');
+            }else {
+                $this->addErrorMessage('Question failed to create!');
+
             }
 
             $this->redirectToUrl('/questions');
@@ -84,7 +90,14 @@ class QuestionsController extends BaseController
             }
             $userEmail = $_POST['annonimusEmail'];
             $content = $_POST['answerContent'];
-            $this->answers = $this->db->postAnswer($theQuestionId, $userName, $content, $userEmail);
+            $answer = $this->answers = $this->db->postAnswer($theQuestionId, $userName, $content, $userEmail);
+
+            if ($answer) {
+                $this->addSuccessMessage('Answer created!');
+            }else {
+                $this->addErrorMessage('Failed to create answer!');
+            }
+
             $this->redirectToUrl('/questions/viewQuestion/' . $theQuestionId);
         }
     }
@@ -113,7 +126,11 @@ class QuestionsController extends BaseController
     {
         if ($_SESSION['isAdmin'] > 0) {
             $this->db->deleteQuestion($id);
+            $this->addSuccessMessage('Question deleted!');
             $this->redirect('questions');
+        } else {
+            $this->addErrorMessage('Failed to delete question!');
+            $this->redirectToUrl('/questions');
         }
     }
 
@@ -122,9 +139,18 @@ class QuestionsController extends BaseController
         if ($_SESSION['isAdmin'] > 0) {
             if ($this->isPost) {
                 $addCategory = $_POST['addCategory'];
-                $this->category = $this->db->addCategory($addCategory);
+                $category = $this->category = $this->db->addCategory($addCategory);
+
+                if ($category) {
+                    $this->addSuccessMessage('Category created!');
+                }else {
+                    $this->addErrorMessage('Failed to create category!');
+                }
+
                 $this->redirectToUrl('/questions');
             }
+        } else {
+            $this->redirectToUrl('/questions');
         }
     }
 }

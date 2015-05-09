@@ -228,3 +228,38 @@ textarea{
 .warningBox {
     background-color: red;
 }
+
+.infoMessages{
+    list-style-type: none;
+    width: 100%;
+}
+
+li.info {
+    background: #EAD57D;
+}
+
+li.success {
+    background: #7f7;
+}
+
+li.error {
+    background: #f77;
+}
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+.clearfix {
+    display: inline-block;
+}
+    html[xmlns] .clearfix {
+display: block;
+}
+* html .clearfix {
+height: 1%;
+}

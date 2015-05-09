@@ -15,7 +15,7 @@
 
 
 
-    <ul class="categoriesSidebar">
+    <ul class="categoriesSidebar clearfix">
         <li><strong>Categories: </strong></li>
         <li><a href="/questions">All</a></li>
         <?php foreach ($this->categories as $category) : ?>
@@ -37,7 +37,7 @@
         </li>
     </ul>
 
-    <ul class="tagsSidebar">
+    <ul class="tagsSidebar clearfix">
         <li><strong>Tags: </strong></li>
         <li><a href="/questions">All</a></li>
         <?php foreach ($this->tags as $tag) : ?>

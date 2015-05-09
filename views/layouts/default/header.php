@@ -32,4 +32,6 @@
         </div>
     <?php endif ?>
 
+    <?php include('messages.php'); ?>
 </header>
+

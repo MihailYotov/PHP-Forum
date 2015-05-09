@@ -9,8 +9,7 @@ class AccountModel extends BaseModel
         $statement->bind_param("s", $username);
         $statement->execute();
         $result = $statement->get_result()->fetch_assoc();
-        //var_dump($result['COUNT(Id)']);
-        if ($result['COUNT(Id)']) {
+        if ($result['COUNT(id)']) {
             return false;
         }
 

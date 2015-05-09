@@ -19,7 +19,7 @@ class AccountController extends BaseController
                 $username = $_POST['username'];
                 $email = $_POST['email'];
                 if ($username == NULL || strlen($username) < 2 || $email == NULL) {
-                    //TODO: Error message
+                    $this->addErrorMessage("Failed to register.");
                     $this->redirect("account", "register");
                 }
 
@@ -38,11 +38,10 @@ class AccountController extends BaseController
                     }
 
                     $_SESSION['username'] = $username;
-                    //TODO: success message
+                    $this->addSuccessMessage("Registration successful!");
                     $this->redirect("questions");
                 } else {
-                    //TODO: Error message
-                    echo("Error register");
+                    $this->addErrorMessage("Failed to register.");
                 }
             }
 
@@ -74,10 +73,10 @@ class AccountController extends BaseController
                         $_SESSION['isAdmin'] = $userData['isAdmin'];
                     }
 
-                    //TODO: Success message
+                    $this->addSuccessMessage("Login successful!");
                     return $this->redirect("questions");
                 } else {
-                    //TODO: Error message
+                    $this->addErrorMessage("Failed to login!");
                     $this->redirect("account", "login");
                 }
             }
@@ -96,7 +95,7 @@ class AccountController extends BaseController
         unset($_SESSION['userId']);
         $_SESSION['isAdmin'] = 0;
         //$this->isLoggedIn = false;
-        //TODO: Info message
+        $this->addInfoMessage("You have logged out!");
         $this->redirectToUrl("/");
     }
 
@@ -163,6 +162,7 @@ class AccountController extends BaseController
     {
         if ($_SESSION['isAdmin'] > 0) {
             $this->db->deleteUser($id);
+            $this->addSuccessMessage('User deleted');
             $this->redirectToUrl('/account/allUsers');
         }
     }
@@ -172,6 +172,7 @@ class AccountController extends BaseController
     {
         if ($_SESSION['isAdmin'] > 0) {
             $this->db->promoteAdmin($id);
+            $this->addSuccessMessage('User promoted to admin.');
             $this->redirectToUrl('/account/profile/' . $id);
         }
     }
@@ -181,6 +182,7 @@ class AccountController extends BaseController
     {
         if ($_SESSION['isAdmin'] > 0) {
             $this->db->downgradeAdmin($id);
+            $this->addSuccessMessage('User downgraded to normal.');
             $this->redirectToUrl('/account/profile/' . $id);
         }
     }
