@@ -1,6 +1,6 @@
 <div class="main">
 
-    <div id="questionBox">
+    <div id="questionBox" class="clearfix">
         <?php foreach ($this->questions as $question) : ?>
             <h3><?= htmlspecialchars($question['title']) ?></h3>
             <h4>Asked by: <?= htmlspecialchars($question['userName']) ?> /
@@ -15,16 +15,17 @@
                 <?php endif ?>
             </h3>
 
-        <?php endforeach ?>
+
     </div>
 
 
     <?php if ($this->answers) : ?>
-        <table class="responsesTable">
+        <table class="responsesTable clearfix">
 
             <?php foreach ($this->answers as $answer) : ?>
                 <tr>
                     <td class="answeredUserId">
+                        <a href="/questions/deleteAnswer/<?= htmlspecialchars($answer['id']) ?>/<?= $question['id'] ?> " class="warningText">[X]</a>
                         <?= htmlspecialchars($answer['userName']) ?>:
                         <?php if ($answer['userEmail']) : ?>
                             <br/>
@@ -39,4 +40,5 @@
         </table>
     <?php endif ?>
 
+    <?php endforeach ?>
 </div>

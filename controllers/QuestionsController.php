@@ -134,6 +134,17 @@ class QuestionsController extends BaseController
     }
 
 
+    public function deleteAnswer($id, $questionId){
+        if ($_SESSION['isAdmin'] > 0) {
+            $this->db->deleteAnswer($id);
+            $this->addSuccessMessage('Answer deleted!');
+            $this->redirectToUrl('/questions/viewQuestion/' . $questionId);
+        } else {
+            $this->redirectToUrl('/questions/viewQuestion/' . $questionId);
+        }
+    }
+
+
     public function addCategory()
     {
         if ($_SESSION['isAdmin'] > 0) {

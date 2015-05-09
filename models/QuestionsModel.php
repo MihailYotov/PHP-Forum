@@ -165,6 +165,17 @@ class QuestionsModel extends BaseModel
         return $statement->affected_rows > 0;
     }
 
+
+    public function deleteAnswer($id)
+    {
+        $statement = self::$db->prepare(
+            "DELETE FROM answers WHERE id = ?");
+        $statement->bind_param("i", $id);
+        $statement->execute();
+        return $statement->affected_rows > 0;
+    }
+
+
     public function addCategory($category)
     {
         if ($category == NULL) {
