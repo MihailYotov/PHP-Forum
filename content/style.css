@@ -25,10 +25,18 @@ body {
     background-color: #EEEEEE;
 }
 
-@media screen and (max-device-height: 1080px){
+@media screen and (max-device-height: 1080px) {
     body {
         width: 100%;
         height: 800px;
+    }
+}
+
+@media screen and (max-device-width: 1920px) {
+    .main {
+        width: 1600px;
+        min-height: 700px;
+        margin: 0 auto;
     }
 }
 
@@ -39,15 +47,15 @@ header {
     height: 10%;
 }
 
-#admminHeader{
+#admminHeader {
     background-color: orange;
 }
-#adminTitle{
+
+#adminTitle {
     display: inline-block;
     width: 300px;
     font-size: 30px;
 }
-
 
 h1 {
     font-size: 40px;
@@ -61,37 +69,37 @@ h2 {
     margin-bottom: 30px;
 }
 
-h3{
+h3 {
     font-size: 20px;
     text-align: center;
     margin-bottom: 10px;
 }
 
-h4{
+h4 {
     font-size: 15px;
     text-align: center;
     margin-bottom: 30px;
 }
 
-#logo{
+#logo {
     display: inline-block;
     float: left;
 }
 
-#logedInBox{
+#logedInBox {
     display: inline-block;
     float: right;
 
 }
 
-.nav{
+.nav {
     display: inline-block;
     vertical-align: bottom;
     margin-top: 40px;
 
 }
 
-.nav > ul > li{
+.nav > ul > li {
     padding: 10px;
 }
 
@@ -100,12 +108,6 @@ h4{
     font-weight: bold;
     text-decoration: none;
     color: #0072BC;
-}
-
-.main {
-    width: 90%;
-    min-height: 90%;
-    margin: 0 auto;
 }
 
 .main > form {
@@ -124,28 +126,29 @@ table {
     margin: 0 auto;
     display: inline-block;
 }
+
 .answeredUserId {
     text-align: left;
     padding: 10px;
 }
 
-.answeredContent{
+.answeredContent {
     padding: 10px;
 }
 
-.responsesTable{
-    width: 70%;
+.responsesTable {
+    width: 100%;
     margin: 0 auto;
 }
 
-.responsesTable, .responsesTable>tr, .responsesTable>td{
+.responsesTable, .responsesTable > tr, .responsesTable > td {
     box-shadow: 0 2px 15px #888888;
     padding: 20px;
     text-align: justify;
 }
 
 #questionBox {
-    width: 70%;
+    width: 100%;
     margin: 0 auto 30px;
     background-color: #ffffff;
     box-shadow: 0 2px 15px #888888;
@@ -153,12 +156,17 @@ table {
     padding: 20px;
 }
 
-textarea{
+.answerForm {
+    width: 700px;
+    margin: 0 auto;
+}
+
+textarea {
     width: 700px;
     height: 250px;
 }
 
-.profileTable{
+.profileTable {
     width: 30%;
     margin: 0 auto;
     box-shadow: 0 2px 15px #888888;
@@ -166,53 +174,66 @@ textarea{
     text-align: justify;
 }
 
-.userProfileTd{
+.userProfileTd {
     padding-left: 20px;
     padding-right: 20px;
 }
 
-.categoriesSidebar{
+.categoriesSidebar {
+    width: 15%;
     display: inline-block;
     float: right;
     list-style-type: none;
     margin: 10px;
 }
 
-.categoriesSidebar>li{
+.categoriesSidebar > li {
     padding: 2px;
 
 }
 
-.tagsSidebar{
+.tagsSidebar {
+    width: 15%;
     display: inline-block;
-    float: right;
+    float: left;
     list-style-type: none;
     margin: 10px;
 }
 
-.tagsSidebar>li{
+.tagsSidebar > li {
     padding: 2px;
 
 }
 
-.questionsList{
+.questionsList {
+    display: inline-block;
+    width: 55%;
+    margin: 0 auto;
+    text-align: center;
+
+}
+
+.questionsList > ul {
     display: inline-block;
     list-style-type: none;
+    text-align: left;
 
-    padding-left: 45%;
+
 }
-.questionsList>li{
+
+.questionsList > li {
     padding: 10px;
 }
+
 /*table, tr, th,td{*/
-    /*border: 1px solid black;*/
+/*border: 1px solid black;*/
 /*}*/
 
-.deleteButton>a{
+.deleteButton > a {
     color: red;
 }
 
-#addCategoryForm{
+#addCategoryForm {
     display: inline-block;
     float: right;
 }
@@ -226,22 +247,22 @@ textarea{
 }
 
 .warningBox {
-     background-color: #FF0000;
- }
+    background-color: #FF0000;
+}
 
-.warningText, .warningText>a{
+.warningText, .warningText > a {
     color: #FF0000;
 }
 
-.infoText, .infoText>a{
+.infoText, .infoText > a {
     color: #FFA500;
 }
 
-.successText, .successText>a{
+.successText, .successText > a {
     color: #008000;
 }
 
-.infoMessages{
+.infoMessages {
     list-style-type: none;
     width: 100%;
 }
@@ -266,12 +287,19 @@ li.error {
     line-height: 0;
     height: 0;
 }
+
 .clearfix {
     display: inline-block;
 }
-    html[xmlns] .clearfix {
-display: block;
+
+html[xmlns] .clearfix {
+    display: block;
 }
+
 * html .clearfix {
-height: 1%;
+    height: 1%;
+}
+
+body>*{
+    padding: 0;
 }

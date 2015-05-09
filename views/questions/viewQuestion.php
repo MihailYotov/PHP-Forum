@@ -11,7 +11,7 @@
         <div><strong><?= htmlspecialchars($question['content']) ?><strong></div>
         <h3>
             <a href="/questions/createAnswer/<?= $question['id'] ?> ">Answer the question</a>
-            <?php if ($_SESSION['isAdmin'] > 0) : ?>
+            <?php if (isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'] > 0) : ?>
                 <span class="deleteButton"><a
                         href="/questions/deleteQuestion/<?= $question['id'] ?> ">[DELETE]</a></span>
             <?php endif ?>
@@ -35,7 +35,7 @@
             <?php foreach ($this->answers as $answer) : ?>
                 <tr>
                     <td class="answeredUserId">
-                        <?php if ($_SESSION['isAdmin'] > 0) : ?>
+                        <?php if (isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'] > 0) : ?>
                             <a href="/questions/deleteAnswer/<?= htmlspecialchars($answer['id']) ?>/<?= $question['id'] ?> "
                                class="warningText">[X]</a>
                         <?php endif ?>

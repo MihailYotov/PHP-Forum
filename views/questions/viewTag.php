@@ -19,7 +19,7 @@
         <?php foreach ($this->categories as $category) : ?>
             <li>
                 <a href="/questions/viewCategory/<?= htmlspecialchars($category['name']) ?> "><?= htmlspecialchars($category['name']) ?></a>
-                <?php if ($_SESSION['isAdmin'] > 0) : ?>
+                <?php if (isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'] > 0) : ?>
                     <a href="/questions/deleteCategory/<?= htmlspecialchars($category['id']) ?> " class="warningText">[X]</a>
                 <?php endif ?>
             </li>
@@ -32,7 +32,7 @@
         <?php foreach ($this->tags as $tag) : ?>
             <li>
                 <a href="<?= htmlspecialchars($tag['name']) ?> "><?= htmlspecialchars($tag['name']) ?></a>
-                <?php if ($_SESSION['isAdmin'] > 0) : ?>
+                <?php if (isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'] > 0) : ?>
                     <a href="/questions/deleteTag/<?= htmlspecialchars($tag['id']) ?> " class="warningText">[X]</a>
                 <?php endif ?>
             </li>
