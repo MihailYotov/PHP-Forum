@@ -129,10 +129,10 @@ class QuestionsController extends BaseController
             $this->addSuccessMessage('Question deleted!');
             $this->redirect('questions');
         } else {
-            $this->addErrorMessage('Failed to delete question!');
             $this->redirectToUrl('/questions');
         }
     }
+
 
     public function addCategory()
     {
@@ -149,6 +149,28 @@ class QuestionsController extends BaseController
 
                 $this->redirectToUrl('/questions');
             }
+        } else {
+            $this->redirectToUrl('/questions');
+        }
+    }
+
+
+    public function deleteCategory($id){
+        if ($_SESSION['isAdmin'] > 0) {
+            $this->db->deleteCategory($id);
+            $this->addSuccessMessage('Category deleted!');
+            $this->redirect('questions');
+        } else {
+            $this->redirectToUrl('/questions');
+        }
+    }
+
+
+    public function deleteTag($id){
+        if ($_SESSION['isAdmin'] > 0) {
+            $this->db->deleteTag($id);
+            $this->addSuccessMessage('Tag deleted!');
+            $this->redirect('questions');
         } else {
             $this->redirectToUrl('/questions');
         }

@@ -226,7 +226,11 @@ textarea{
 }
 
 .warningBox {
-    background-color: red;
+    background-color: #FF0000;
+}
+
+.warningText{
+    color: #FF0000;
 }
 
 .infoMessages{
