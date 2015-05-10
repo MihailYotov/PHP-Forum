@@ -22,7 +22,7 @@
         <ul>
             <?php foreach ($this->questions as $question) : ?>
                 <li>
-                    <a href="/questions/viewQuestion/<?= $question['id'] ?> "><?= htmlspecialchars($question['title']) ?></a>
+                    <a href="/questions/viewQuestion/<?= $question['id'] ?> "><?= htmlspecialchars($question['title']) ?> [<?= htmlspecialchars($question['visits']) ?>]</a>
                 </li>
             <?php endforeach ?>
         </ul>
