@@ -46,7 +46,7 @@
                 <?php if ($_SESSION['isAdmin'] > 0) : ?>
                     <form action="/questions/addCategory" method="post" id="addCategoryForm">
                         <label for="addCategory"></label>
-                        <input type="text" id="addCategory" name="addCategory" required="required"/>
+                        <input type="text" id="addCategory" name="addCategory" required="required" pattern="[a-zA-Z0-9 /\\@#$%&]+"/>
                         <br/>
                         <input type="submit" name="submit" value="Add Category"/>
                     </form>

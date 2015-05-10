@@ -13,7 +13,7 @@
                 <input type="text" id="annonimusName" name="annonimusName" required="required"/>
 
                 <label for="annonimusEmail">Your email</label>
-                <input type="text" id="annonimusEmail" name="annonimusEmail"/>
+                <input type="text" id="annonimusEmail" name="annonimusEmail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"/>
 
 
             <?php endif ?>

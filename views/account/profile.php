@@ -10,13 +10,13 @@
             <?php if ($user['fname'] != NULL) : ?>
                 <tr>
                     <td class="userProfileTd"><strong>First name: </strong></td>
-                    <td class="userProfileTd"><?= htmlspecialchars($user['fname']) ?>:</td>
+                    <td class="userProfileTd"><?= htmlspecialchars($user['fname']) ?></td>
                 </tr>
             <?php endif ?>
             <?php if ($user['lname'] != NULL) : ?>
                 <tr>
                     <td class="userProfileTd"><strong>Last name: </strong></td>
-                    <td class="userProfileTd"><?= htmlspecialchars($user['lname']) ?>:</td>
+                    <td class="userProfileTd"><?= htmlspecialchars($user['lname']) ?></td>
                 </tr>
             <?php endif ?>
             <tr>
@@ -24,7 +24,7 @@
                 <td class="userProfileTd"><?= htmlspecialchars($user['email']) ?></td>
             </tr>
             <tr>
-                <td class="userProfileTd"><strong>Your user status is: </strong></td>
+                <td class="userProfileTd"><strong>User status: </strong></td>
                 <?php if ($user['isAdmin'] < 1) : ?>
                     <td class="userProfileTd successText">Normal user</td>
                 <?php else : ?>

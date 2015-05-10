@@ -42,13 +42,13 @@ body {
 
 header {
     padding: 20px;
-    background-color: cadetblue;
+    background-color: #5F9EA0;
     margin-bottom: 20px;
     height: 10%;
 }
 
 #admminHeader {
-    background-color: orange;
+    background-color: #FFA500;
 }
 
 #adminTitle {
@@ -121,10 +121,27 @@ footer {
     text-align: center;
 }
 
-table {
-    width: 70%;
+/*table {*/
+/*width: 70%;*/
+/*margin: 0 auto;*/
+/*display: inline-block;*/
+/*}*/
+
+.questionBoxQuestion{
+    padding-left: 100px;
+}
+
+.questionBoxTags{
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+.responsesTable {
+    width: 100%;
     margin: 0 auto;
-    display: inline-block;
+    box-shadow: 0 2px 15px #888888;
+    padding: 20px;
+    text-align: justify;
 }
 
 .answeredUserId {
@@ -133,18 +150,9 @@ table {
 }
 
 .answeredContent {
+    text-align: left;
     padding: 10px;
-}
-
-.responsesTable {
-    width: 100%;
-    margin: 0 auto;
-}
-
-.responsesTable, .responsesTable > tr, .responsesTable > td {
-    box-shadow: 0 2px 15px #888888;
-    padding: 20px;
-    text-align: justify;
+    padding-left: 100px;
 }
 
 #questionBox {
@@ -217,7 +225,6 @@ textarea {
     display: inline-block;
     list-style-type: none;
     text-align: left;
-
 
 }
 
@@ -300,6 +307,9 @@ html[xmlns] .clearfix {
     height: 1%;
 }
 
-body>*{
-    padding: 0;
+cite {
+    font-size: 12px;
+}
+p{
+    text-align: center;
 }

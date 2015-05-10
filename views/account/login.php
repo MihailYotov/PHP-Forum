@@ -7,10 +7,10 @@
             <legend>Login</legend>
 
             <label for="username">Username: </label>
-            <input type="text" id="username" name="username" required="required"/>
+            <input type="text" id="username" name="username" required="required" pattern="[a-zA-Z0-9 /\\@#$%&]+" placeholder="Username"/>
 
             <label for="password">Password: </label>
-            <input type="password" id="password" name="password" required="required"/>
+            <input type="password" id="password" name="password" required="required" pattern="[a-zA-Z0-9 /\\@#$%&]+" placeholder="******"/>
 
             <input type="submit" name="submit" value="Login"/>
 
