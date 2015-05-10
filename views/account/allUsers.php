@@ -1,7 +1,7 @@
 <div class="main">
     <h1><?= htmlspecialchars($this->title); ?></h1>
 
-    <div  class="questionsList">
+    <div  class="allUsersList questionsList">
         <ul>
             <?php foreach ($this->users as $user) : ?>
                 <li>
