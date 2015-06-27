@@ -36,11 +36,12 @@ class QuestionsController extends BaseController
             foreach ($this->tempGetQuestion as $question) {
 
                 $questionId = $question['id'];
-                $tags = ucfirst(strtolower($_POST['tags']));
-                $tagsArr = explode(', ', $tags);
+                $tags = $_POST['tags'];
+                $tags = str_replace(' ', '', $tags);
+                $tagsArr = explode(',', $tags);
 
                 foreach ($tagsArr as $tag) {
-                    $this->addedTags = $this->db->addTags($tag);
+                    $this->addedTags = $this->db->addTags(ucfirst(strtolower($tag)));
                     $getTagId = $this->getTagId = $this->db->getTagId($tag);
                      foreach($getTagId as $tagId){
                         $this->questionTags = $this->db->addQuestionTags($questionId, $tagId['id']);
