@@ -4,7 +4,7 @@
     <form action="/questions/create" method="post">
 
         <label for="questionTitle">Title: </label>
-        <input type="text" id="questionTitle" name="questionTitle" required="required"/>
+        <input type="text" id="questionTitle" name="questionTitle" required="required" maxlength="100"/>
 
         <label for="questionContent">Content: </label>
         <textarea id="questionContent" name="questionContent" required="required"> </textarea>

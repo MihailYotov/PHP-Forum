@@ -215,7 +215,7 @@ textarea {
 
 .questionsList {
     display: inline-block;
-    width: 55%;
+    width: 67%;
     margin: 0 auto;
     text-align: center;
 
@@ -224,7 +224,7 @@ textarea {
 .questionsList > ul {
     display: inline-block;
     list-style-type: none;
-    text-align: left;
+    text-align: center;
 
 }
 
@@ -272,6 +272,9 @@ textarea {
 .infoMessages {
     list-style-type: none;
     width: 100%;
+    position: absolute;
+    left: 0;
+    top: 100px;
 }
 
 li.info {
@@ -323,7 +326,7 @@ p{
     }
 
     .questionsList{
-        margin-left: 70px;
+        margin-left: 80px;
     }
 
     .infoMessages {
