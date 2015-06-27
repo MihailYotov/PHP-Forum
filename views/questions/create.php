@@ -17,7 +17,7 @@
         </select>
 
         <label for="tags">Tags:</label>
-        <input type="text" id="tags" name="tags" pattern="[a-zA-Z0-9 /\\@#$%&]+" placeholder="E.g.: PHP, Java, C#"/>
+        <input type="text" id="tags" name="tags" pattern="[a-zA-Z0-9 /\\@#$%&, ]+" placeholder="E.g.: PHP, Java, C#"/>
         <p><cite>Only words and numbers, separated by comma(,). </cite></p>
 
         <input type="submit" name="submit" value="Ask" />

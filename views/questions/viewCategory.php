@@ -18,7 +18,7 @@
         <?php endforeach ?>
     </ul>
 
-    <div  class="questionsList">
+    <div class="questionsList">
         <ul>
             <?php foreach ($this->questions as $question) : ?>
                 <li>

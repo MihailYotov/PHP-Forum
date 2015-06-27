@@ -5,33 +5,51 @@ class AccountModel extends BaseModel
     //REGISTRATION
     public function register($username, $password, $fName, $lName, $email)
     {
-        $statement = self::$db->prepare("SELECT COUNT(id) FROM users WHERE username = ?");
-        $statement->bind_param("s", $username);
-        $statement->execute();
-        $result = $statement->get_result()->fetch_assoc();
-        if ($result['COUNT(id)']) {
-            return false;
-        }
+        $resultsArray = [];
+
+//        $statement = self::$db->prepare("SELECT COUNT(id) FROM users WHERE username = ?");
+//        $statement->bind_param("s", $username);
+//        $statement->execute();
+//        $result = $statement->get_result()->fetch_assoc();
+//        if ($result['COUNT(id)']) {
+//            return false;
+//        }
+
+//        while ($row = $statement->get_result()->fetch_assoc()) {
+//            array_push($resultsArray, $row);
+//            if ($row['COUNT(id)']) {
+//                return false;
+//            }
+//        }
 
         $hash_pass = password_hash($password, PASSWORD_BCRYPT);
 
-        $registerStatement = self::$db->prepare("INSERT INTO users (username, password, fname, lname, email) VALUES (?, ?, ?, ?, ?)");
+        $registerStatement = self::$db->prepare(
+            "INSERT INTO users (username, password, fname, lname, email) VALUES (?, ?, ?, ?, ?)");
         $registerStatement->bind_param("sssss", $username, $hash_pass, $fName, $lName, $email);
         $registerStatement->execute();
-
-        return true;
+        return $registerStatement->affected_rows > 0;
+        //return true;
     }
 
 
     //LOGIN
     public function login($username, $password)
     {
-        $statement = self::$db->prepare("SELECT id, username, password FROM users WHERE username = ?");
-        $statement->bind_param("s", $username);
-        $statement->execute();
-        $result = $statement->get_result()->fetch_assoc();
+        $resultsArray = [];
+        $statement = self::$db->query(
+            "SELECT id, username, password FROM users WHERE username = '$username'");
+        //$statement = self::$db->prepare("SELECT id, username, password FROM users WHERE username = ?");
+        //$statement->bind_param("s", $username);
+        //$statement->execute();
+        //$result = $statement->get_result()->fetch_assoc();
 
-        if (password_verify($password, $result['password'])) {
+        while ($row = $statement->fetch_assoc()) {
+            // do what you need.
+            array_push($resultsArray, $row);
+        }
+
+        if (password_verify($password, $resultsArray[0]['password'])) {
             return true;
         }
 
@@ -42,16 +60,32 @@ class AccountModel extends BaseModel
     //PROFILE INFO
     public function getUserData($username)
     {
+        $resultsArray = [];
+
         $statement = self::$db->query(
             "SELECT * FROM users WHERE username LIKE '$username'");
-        return $statement->fetch_all(MYSQLI_ASSOC);
+        //return $statement->fetch_all(MYSQLI_ASSOC);
+
+        while ($row = $statement->fetch_assoc()) {
+            array_push($resultsArray, $row);
+        }
+
+        return $resultsArray;
     }
 
     public function viewUser($userId)
     {
+        $resultsArray = [];
+
         $statement = self::$db->query(
             "SELECT * FROM users WHERE id = $userId");
-        return $statement->fetch_all(MYSQLI_ASSOC);
+        //return $statement->fetch_all(MYSQLI_ASSOC);
+
+        while ($row = $statement->fetch_assoc()) {
+            array_push($resultsArray, $row);
+        }
+
+        return $resultsArray;
     }
 
 
