@@ -104,9 +104,17 @@ class AccountModel extends BaseModel
     //ADMIN FUNCTIONS
     public function getAllUsers()
     {
+        $resultsArray = [];
+
         $statement = self::$db->query(
             "SELECT * FROM users ORDER BY id");
-        return $statement->fetch_all(MYSQLI_ASSOC);
+        //return $statement->fetch_all(MYSQLI_ASSOC);
+
+        while ($row = $statement->fetch_assoc()) {
+            array_push($resultsArray, $row);
+        }
+
+        return $resultsArray;
     }
 
     public function deleteUser($id)
